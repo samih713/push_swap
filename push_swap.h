@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/05 03:41:30 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/06 04:20:53 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ void			mem_check(void *pointer);
 // * Sorting Testing
 // t_scan	*scan(t_stack *a);
 // void	sort_stack(t_stack *a, t_stack *b);
-int		check_ascending(t_stack *stack);
-int		check_descending(t_stack *stack);
-void	split_stack(t_stack *a, t_stack *b);
+void	sort(t_stack *a, t_stack *b);
 
 
 // * testing remove strncpy from ft_split

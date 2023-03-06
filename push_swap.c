@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:36:37 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/05 04:25:52 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/06 04:27:15 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int main(int argc, char **argv)
 	fill_stack(a, argv, argc - 1);
 	// *******************************************
 	#ifdef PRINTON
-	split_stack(a, b);
 	print_stack(a, 'a');
 	print_stack(b, 'b');
+	sort(a, b);
 	#endif
 	// * free the stacks
 	free_stacks(a, b);

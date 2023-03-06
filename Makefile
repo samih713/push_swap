@@ -6,9 +6,16 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 23:48:37 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/28 01:27:23 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/03/06 03:49:20 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+### COLORS
+COLOR_GREEN=\033[0;32m
+COLOR_RED=\033[0;31m
+COLOR_BLUE=\033[0;34m
+COLOR_END=\033[0m
+###
 
 CC:= clang
 
@@ -23,7 +30,8 @@ NAME:= push_swap
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CCFLAGS) $^ -o $@
+	@$(CC) $(CCFLAGS) $^ -o $@
+	@echo "$(COLOR_GREEN)>>push_swap ready"
 
 clean:
 	@rm -f $(OBJ)
