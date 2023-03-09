@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:38:20 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/28 02:37:40 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/09 04:25:11 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	create_empty_stack(t_stack *stack)
 	stack->cur = NULL;
 	stack->top = NULL;
 	stack->bot = NULL;
+	stack->size = 0;
 }
 
 t_num	*create_node(int num)
@@ -58,6 +59,9 @@ void	fill_stack(t_stack *stack, char **numbers, int count)
 		check_duplicates(stack, node, table);
 		i++;
 	}
+	// * circular
+	stack->top->above = stack->bot;
+	stack->bot->below = stack->top;
 	if (table)
 		free_table(table);
 }
@@ -65,11 +69,15 @@ void	fill_stack(t_stack *stack, char **numbers, int count)
 // TODO replace printf
 void	print_stack(t_stack *stack, char stack_name)
 {
+	int	i;
+
+	i = 0;
 	stack->cur = stack->top;
-	while (stack->cur)
+	while (i < stack->size)
 	{
 		printf("%7d\n", stack->cur->num);
 		stack->cur = stack->cur->below;
+		i++;
 	}
 	printf("--- stack (%c) ---\n", stack_name);
 }
@@ -77,26 +85,36 @@ void	print_stack(t_stack *stack, char stack_name)
 // TODO replace printf
 void	print_rstack(t_stack *stack, char stack_name)
 {
+	int	i;
+
+	i = 0;
 	stack->cur = stack->bot;
-	while (stack->cur)
+	while (i < stack->size)
 	{
 		printf("%7d\n", stack->cur->num);
 		stack->cur = stack->cur->above;
+		i++;
 	}
 	printf("--- stack (%c) ---\n", stack_name);
 }
 
 void	free_stack(t_stack *stack)
 {
-	t_num *above;
+	t_num	*above;
+	int		i;
 
 	stack->cur = stack->bot;
-	while (stack->cur)
+	i = 0;
+	while (i < stack->size)
 	{
-		above = stack->cur->above;
+		// * this is needed, in case of duplicate, quits before the top->above is set
+		if (stack->cur)
+			above = stack->cur->above;
 		free(stack->cur);
 		stack->cur = above;
+		i++;
 	}
+	free(stack);
 }
 
 // * atoi handles the INT_MAX and INT_MIN

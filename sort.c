@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 01:27:27 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/06 05:14:50 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/09 04:28:27 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_scan	*scan(t_stack *a)
 // * sort
 void	sort(t_stack *a, t_stack *b)
 {
+	print_stack(a, 'a');
 	printf("original\n\n");
 	split_stack(a, b);
 	print_stack(a, 'a');
@@ -71,9 +72,8 @@ static void	split_stack(t_stack *a, t_stack *b)
 	size_a = a->size;
 	if (check_ascending(a))
 		return ;
-	while (a->bot->num < a->top->num) {
+	while (a->bot->num < a->top->num)
 		rrot(a, 'a');
-	}
 	while (i < size_a) {
 		do
 		{
@@ -163,25 +163,3 @@ static int		check_descending(t_stack *stack)
 	return (1);
 }
 // * check functions -------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-/* if top of A < top of B:
-    pb
-rb
-while bottom of B <= top of B:
-    if top of A < top of B:
-        pb
-    rb
-while bottom of B <= top of A:
-    pb
-    rb */

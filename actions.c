@@ -6,25 +6,22 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:53:41 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/05 03:39:58 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/09 05:40:21 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// TODO operation on an empty stack
 void	swap(t_stack *stack, char name)
 {
-	t_num	*temp;
+	int	temp;
 
-	temp = stack->top;
-	stack->top = stack->top->below;
-	stack->top->above = NULL;
-	temp->below = stack->top->below;
-	stack->top->below = temp;
-	temp->above = stack->top;
+	if (stack->size < 2)
+		return ;
+	temp = stack->top->num;
+	stack->top->num = ((t_num *)(stack->top->below))->num;
+	((t_num *)(stack->top->below))->num = temp;
 	write(1, "s", 1);
-	// TODO add new line
 	if (name)
 	{
 		write(1, &name, 1);
@@ -45,15 +42,10 @@ void	rot(t_stack *stack, char name)
 
 	if (stack->size < 2)
 		return ;
-	stack->top->above = stack->bot;
-	stack->bot->below = stack->top;
-	temp = stack->top->below;
-	stack->top->below = NULL;
-	stack->bot = stack->bot->below;
-	stack->top = temp;
-	temp->above = NULL;
+	temp = stack->top;
+	stack->top = temp->below;
+	stack->bot = temp;
 	write(1, "r", 1);
-	// TODO add new line
 	if (name)
 	{
 		write(1, &name, 1);
@@ -72,15 +64,11 @@ void	rrot(t_stack *stack, char name)
 {
 	t_num	*temp;
 
-	if (stack->top == stack->bot)
+	if (stack->size < 2)
 		return ;
-	temp = stack->bot->above;
-	stack->bot->below = stack->top;
-	stack->top->above = stack->bot;
-	stack->bot->above = NULL;
-	stack->top = stack->bot;
-	stack->bot = temp;
-	stack->bot->below = NULL;
+	temp = stack->bot;
+	stack->bot = temp->above;
+	stack->top = temp;
 	write(1, "rr", 2);
 	if (name)
 	{
@@ -101,53 +89,61 @@ void	pb(t_stack *a, t_stack *b)
 {
 	t_num	*temp;
 
-	temp = a->top->below;
-	if (temp) // ! in case a had one element
-		temp->above = NULL;
-	if (b->top)
+	if (a->size < 1)
+		return ;
+	a->bot->below = a->top->below;
+	((t_num *)(a->top->below))->above = a->bot;
+	temp = a->top;
+	a->top = a->top->below;
+	// a top removed and node below it is now top
+	if (b->size)
 	{
-		a->top->below = b->top;
-		b->top->above = a->top;
-		b->top = a->top;
-		a->top = temp;
+		b->top->above = temp;
+		temp->below = b->top;
+		temp->above = b->bot;
+		b->bot->below = temp;
+		b->top = temp;
 	}
 	else
 	{
-		b->top = a->top;
-		b->bot = a->top;
-		b->top->below = NULL;
-		b->top->above = NULL;
-		a->top = temp;
+		b->top = temp;
+		b->bot = temp;
+		temp->above = NULL;
+		temp->below = NULL;
 	}
 	a->size--;
 	b->size++;
 	write(1, "pb\n", 3);
 }
-
+// ! debug from here
 void	pa(t_stack *a, t_stack *b)
 {
 	t_num	*temp;
 
-	temp = b->top->below;
-	if (temp) // ! in case a had one element
-		temp->above = NULL;
-	if (a->top)
+	if (b->size < 1)
+		return ;
+	b->bot->below = b->top->below;
+	((t_num *)(b->top->below))->above = b->bot;
+	temp = b->top;
+	b->top = b->top->below;
+	// a top removed and node below it is now top
+	if (a->size)
 	{
-		b->top->below = a->top;
-		a->top->above = b->top;
-		a->top = b->top;
-		b->top = temp;
+		a->top->above = temp;
+		temp->below = a->top;
+		temp->above = a->bot;
+		a->bot->below = temp;
+		a->top = temp;
 	}
 	else
 	{
-		a->top = b->top;
-		a->bot = b->top;
-		a->top->below = NULL;
-		a->top->above = NULL;
-		b->top = temp;
+		a->top = temp;
+		a->bot = temp;
+		temp->above = NULL;
+		temp->below = NULL;
 	}
-	a->size++;
-	b->size--;
+	b->size++;
+	a->size--;
 	write(1, "pa\n", 3);
 }
 

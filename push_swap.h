@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/06 04:20:53 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/07 04:38:09 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	free_split(char **split);
 
 #endif
 
+// * prio
+// TODO get it to sort
 // * Replace illegal
 // TODO replace printf
 // TODO replace strncpy

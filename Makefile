@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 23:48:37 by sabdelra          #+#    #+#              #
-#    Updated: 2023/03/06 03:49:20 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/03/07 04:24:38 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,11 @@ COLOR_BLUE=\033[0;34m
 COLOR_END=\033[0m
 ###
 
-CC:= clang
-
 SRC:= actions.c error.c push_swap.c utils.c sort.c ft_split.c
 
 OBJ:= actions.o error.o push_swap.o utils.o sort.o ft_split.o
 
-CCFLAGS:= -Wall -Werror -Wextra -std=c99 -ggdb3
+CCFLAGS:= -Wall -Werror -Wextra -std=c99 -g
 
 NAME:= push_swap
 
