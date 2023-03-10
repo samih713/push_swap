@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:53:41 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/09 05:40:21 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/10 04:42:45 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	pb(t_stack *a, t_stack *b)
 	((t_num *)(a->top->below))->above = a->bot;
 	temp = a->top;
 	a->top = a->top->below;
-	// a top removed and node below it is now top
 	if (b->size)
 	{
 		b->top->above = temp;
@@ -115,7 +114,7 @@ void	pb(t_stack *a, t_stack *b)
 	b->size++;
 	write(1, "pb\n", 3);
 }
-// ! debug from here
+
 void	pa(t_stack *a, t_stack *b)
 {
 	t_num	*temp;
@@ -126,7 +125,6 @@ void	pa(t_stack *a, t_stack *b)
 	((t_num *)(b->top->below))->above = b->bot;
 	temp = b->top;
 	b->top = b->top->below;
-	// a top removed and node below it is now top
 	if (a->size)
 	{
 		a->top->above = temp;
@@ -142,8 +140,8 @@ void	pa(t_stack *a, t_stack *b)
 		temp->above = NULL;
 		temp->below = NULL;
 	}
-	b->size++;
-	a->size--;
+	b->size--;
+	a->size++;
 	write(1, "pa\n", 3);
 }
 

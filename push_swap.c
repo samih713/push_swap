@@ -6,13 +6,13 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:36:37 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/09 05:14:13 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/03/10 04:44:52 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#define PRINTON
+#define PRINTOFF
 
 static void	free_stacks(t_stack *a, t_stack *b);
 
@@ -38,14 +38,14 @@ int main(int argc, char **argv)
 	#ifdef PRINTON
 	print_stack(a, 'a');
 	print_stack(b, 'b');
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
+	rrot(a, 'a');
+	rrot(a, 'a');
+	rrot(a, 'a');
 	print_stack(a, 'a');
 	print_stack(b, 'b');
-	pa(a, b);
-	pa(a, b);
-	pa(a, b);
+	rrot(b, 'b');
+	rrot(b, 'b');
+	rrot(b, 'B');
 	print_stack(a, 'a');
 	print_stack(b, 'b');
 	#endif
