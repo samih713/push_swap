@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _ft_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 23:45:34 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 18:38:34 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:16:55 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	exit_clean(t_stack *stack, t_hash *table)
 {
 	free_stack(stack);
 	free_table(table);
-	write(2, "Error\n", 7);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 

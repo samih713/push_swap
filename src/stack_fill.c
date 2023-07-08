@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:01:05 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 20:08:21 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/08 01:10:20 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	quit(t_hash *table, t_stack *stack, int dup)
 	if (is_ascending(stack) || dup)
 	{
 		free_stack(stack);
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		exit(EXIT_FAILURE);
 	}
 }

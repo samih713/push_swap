@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 02:04:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/06/19 19:15:31 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/07 21:15:35 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 void	*mem_check(void *pointer)
 {
 	if (!pointer)
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 	return (pointer);
 }

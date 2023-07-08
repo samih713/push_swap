@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/06/19 14:04:47 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/08 01:18:51 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void mechanicalTurk(t_stack *a, t_stack *b);
 
 // big
 // TODO all exits print to stderr
-// TODO fix make files and project organisation
-	// (https://www.youtube.com/watch?v=CRlqU9XzVr4) tutorial
 // TODO sort 2 numbers
 
 // small
