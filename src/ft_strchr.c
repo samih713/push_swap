@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:04:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/07/08 08:55:23 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/07/08 06:34:05 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/07/08 06:36:04 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//* implementing error wrapper function
-void	*mem_check(void *pointer)
+char	*ft_strchr(const char *s, int c)
 {
-	if (!pointer)
-		write(2, "Error\n", 6);
-	return (pointer);
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			return (i + (char *) s);
+		i++;
+	}
+	if (s[i] == (char) c)
+		return (i + (char *) s);
+	return (NULL);
 }

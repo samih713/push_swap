@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/07/08 01:18:51 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/07/09 02:40:35 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 #define str(s) #s
 #define putstr(string) (write(1, string, ft_strlen(string)))
-#define puterr(string) (write(2, string, ft_strlen(string)))
 
 //* stack
 /*
@@ -72,16 +71,19 @@ void	push(t_stack *from_stack, t_stack *to_stack);
 
 //* sources
 void			stack_init(t_stack *stack, char *name);
-void			stack_fill(t_stack *stack, char **numbers, int count);
+int				stack_fill(t_stack *stack, char **numbers, int count);
 void			free_stack(t_stack *stack);
 void			free_table(t_hash *table);
-int				_ft_atoi(const char *num, t_stack *stack, t_hash *table);
+int				_ft_atoi(const char *num, t_stack *stack, t_hash *table, int *err_atoi);
 size_t			ft_strlen(char *str);
 bool			is_ascending(t_stack *stack);
 bool			is_descending(t_stack *stack);
 void			*mem_check(void *pointer);
 void			print_stack(t_stack *stack);
 void			rprint_stack(t_stack *stack);
+char			*ft_strchr(const char *s, int c);
+void			*ft_memmove(void *dst, const void *src, size_t len);
+void			free_numbers(char **numbers, int size);
 
 // * Sorting
 void mechanicalTurk(t_stack *a, t_stack *b);

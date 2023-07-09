@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:04:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/07/08 08:55:23 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/07/08 07:31:05 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/07/08 07:31:22 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//* implementing error wrapper function
-void	*mem_check(void *pointer)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (!pointer)
-		write(2, "Error\n", 6);
-	return (pointer);
+	size_t	i;
+	char	*source;
+	char	*destination;
+
+	if (!src && !dst)
+		return (NULL);
+	i = 0;
+	source = (char *) src;
+	destination = (char *) dst;
+	if (src < dst)
+		while (len--)
+			destination[len] = source[len];
+	else
+	{
+		while (len--)
+		{
+			destination[i] = source[i];
+			i++;
+		}
+	}
+	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:01:05 by eva-001           #+#    #+#             */
-/*   Updated: 2023/07/08 01:10:20 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/07/09 03:41:06 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 //?		Helper functions
 static void			htable_init(int size, t_hash *table);
-static void			check_duplicates(t_stack *stack,
+static int			check_duplicates(t_stack *stack,
 						t_num *node, t_hash *table);
 static t_num		*init_node(void);
-static void			quit(t_hash *table, t_stack *stack, int dup);
+static int			quit(t_hash *table, t_stack *stack);
 
 /*
 Fills the stack with numbers from an array of strings, the numbers are stored
@@ -29,10 +29,11 @@ First argument is the top of the stack, stack starts at bot ---> above
 Duplicate checking is done using a hast_table implementation
 atoi handles multiple invalid argument cases, and exits cleanly
  */
-void	stack_fill(t_stack *stack, char **n_list, int count)
+int	stack_fill(t_stack *stack, char **numbers, int count)
 {
 	t_num	*node;
 	t_hash	table;
+	int		err_atoi;
 
 	htable_init(count, &table);
 	while (stack->size < count)
@@ -48,27 +49,23 @@ void	stack_fill(t_stack *stack, char **n_list, int count)
 			stack->bot->below = node;
 		}
 		stack->top = node;
-		node->num = (_ft_atoi(n_list[count - stack->size], stack, &table));
-		node->str = n_list[count - stack->size];
+		node->num = (_ft_atoi(numbers[count - stack->size - 1], stack, &table, &err_atoi));
+		node->str = numbers[count - stack->size - 1];
 		stack->size++;
-		check_duplicates(stack, node, &table);
+		if(check_duplicates(stack, node, &table) || err_atoi)
+			return(quit(&table, stack) && 0);
 	}
-	quit(&table, stack, 0);
+	return (quit(&table, stack));
 }
 
 /*
 Frees the hash table, and checks for already sorted before returning
 */
-static void	quit(t_hash *table, t_stack *stack, int dup)
+static int	quit(t_hash *table, t_stack *stack)
 {
 	if (table)
 		free_table(table);
-	if (is_ascending(stack) || dup)
-	{
-		free_stack(stack);
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
+	return (1);
 }
 
 /*
@@ -79,7 +76,7 @@ static void	htable_init(int size, t_hash *table)
 	unsigned int		i;
 
 	i = 0;
-	table->entries = malloc(sizeof(t_entry *) * size);
+	table->entries = mem_check(malloc(sizeof(t_entry *) * size));
 	if (table->entries)
 	{
 		table->size = size;
@@ -97,7 +94,7 @@ checks for duplicates as the arguments are being read,
 checks their hash table entry for a reading
 handles collisions by a single linked list of c_entry's
 */
-static void	check_duplicates(t_stack *stack, t_num *node, t_hash *table)
+static int	check_duplicates(t_stack *stack, t_num *node, t_hash *table)
 {
 	unsigned int	hash_value;
 	t_entry			*c_entry;
@@ -115,7 +112,7 @@ static void	check_duplicates(t_stack *stack, t_num *node, t_hash *table)
 		while (c_entry)
 		{
 			if (c_entry->value == node->num)
-				quit(table, stack, DUPLICATE);
+				return (1);
 			else if (c_entry->next == NULL)
 			{
 				c_entry->next = mem_check(malloc(sizeof(t_entry)));
@@ -126,6 +123,7 @@ static void	check_duplicates(t_stack *stack, t_num *node, t_hash *table)
 			c_entry = c_entry->next;
 		}
 	}
+	return (0);
 }
 
 /*

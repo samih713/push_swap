@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 23:45:34 by eva-001           #+#    #+#             */
-/*   Updated: 2023/07/07 21:16:55 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/07/09 22:49:06 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/07/09 22:51:19by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //?		Helper functions
-static void	exit_clean(t_stack *stack, t_hash *table);
+static int	atoi_fail(int *err_atoi);
 static bool	is_digit(char c);
 static bool	is_sign(char c);
 
@@ -25,32 +25,32 @@ only accepts "+1" or similar
 atoi needs stack and table to free on exit
 underscore because its very specific and only intended to be used by fill_table
 */
-int	_ft_atoi(const char *num, t_stack *stack, t_hash *table)
+int	_ft_atoi(const char *num, t_stack *stack, t_hash *table, int *err_atoi)
 {
 	int		i;
-	int		sign;
+	long	sign;
 	long	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
+	*err_atoi = 0;
 	if (is_sign(num[i]))
 	{
-		if (num[i] == '-')
-			sign = -1;
+		sign = -1 * (num[i] == '-');
 		i++;
 	}
 	if (!num[i])
-		exit_clean(stack, table);
+		return (atoi_fail(err_atoi));
 	while (is_digit(num[i]))
 	{
-		if (!is_digit(num[i])
-			|| (result > INT_MAX || (result * sign < INT_MIN)))
-			exit_clean(stack, table);
 		result = (num[i++] - '0') + (result * 10);
+		if (!is_digit(num[i - 1]) || ((result * sign != INT_MIN)
+				&& ((result * sign < INT_MIN) || result > INT_MAX)))
+			return (atoi_fail(err_atoi));
 	}
 	if (num[i])
-		exit_clean(stack, table);
+		return (atoi_fail(err_atoi));
 	return (result * sign);
 }
 
@@ -58,12 +58,10 @@ int	_ft_atoi(const char *num, t_stack *stack, t_hash *table)
 frees allocated nodes from loading arguments, before exiting
 with failure and invalid integer
 */
-static void	exit_clean(t_stack *stack, t_hash *table)
+static int	atoi_fail(int *err_atoi)
 {
-	free_stack(stack);
-	free_table(table);
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	*err_atoi = 1;
+	return (0);
 }
 
 static bool	is_sign(char c)

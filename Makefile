@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+         #
+#    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 23:48:37 by sabdelra          #+#    #+#              #
-#    Updated: 2023/06/19 22:59:23 by eva-001          ###   ########.fr        #
+#    Updated: 2023/07/08 07:38:44 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ COLOR_END=\033[0m
 NAME:= push_swap
 
 SRCSDR:= src/
-SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c stack_print.c utils.c push.c swap.c rotate.c r_rotate.c
+SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c stack_print.c utils.c push.c swap.c rotate.c r_rotate.c ft_strchr.c ft_memmove.c
 SRCS:= $(addprefix $(SRCSDR), $(SRCSL))
 
 OBJSDR:= obj/
@@ -32,7 +32,7 @@ CCFLAGS:= -ggdb3
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) main.c
 	@$(CC) $(CCFLAGS) $(OBJS) main.c -o $(NAME)
 	@echo "$(COLOR_GREEN)>> push_swap ready✅\n$(COLOR_END)"
 
@@ -46,7 +46,7 @@ $(OBJSDR)%.o: $(SRCSDR)%.c
 
 clean:
 	@rm -f $(OBJS)
-	
+
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(COLOR_BLUE).. full cleaned$(COLOR_END)"

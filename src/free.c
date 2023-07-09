@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:07:59 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 19:57:16 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/08 08:34:16 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,14 @@ void	free_stack(t_stack *stack)
 		temp = stack->bot;
 		i++;
 	}
+}
+
+void	free_numbers(char **numbers, int size)
+{
+	while (size)
+	{
+		free(numbers[size - 1]);
+		size--;
+	}
+	free (numbers);
 }
