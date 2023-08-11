@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/07/27 22:39:27 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:56:08 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ of the list
 typedef struct s_num
 {
 	int				num;
+	int				rank;
 	char			*str;
 	struct s_num	*below;
 	struct s_num	*above;
@@ -86,8 +87,8 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			free_numbers(char **numbers, int size);
 
 // * Sorting
-void sort_3(t_stack *a, t_stack *b);
-void mechanicalTurk(t_stack *a, t_stack *b);
+void sort_small(t_stack *a, t_stack *b);
+void sort(t_stack *a, t_stack *b);
 
 #endif
 

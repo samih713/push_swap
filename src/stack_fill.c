@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:01:05 by eva-001           #+#    #+#             */
-/*   Updated: 2023/07/09 03:41:06 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:00:18 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ static t_num	*init_node(void)
 	t_num	*node;
 
 	node = mem_check(malloc(sizeof(t_num)));
+	node->rank = 0;
+	node->str = 0;
 	node->above = NULL;
 	node->below = NULL;
 	return (node);

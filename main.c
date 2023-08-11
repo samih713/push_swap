@@ -30,8 +30,12 @@ int main(int argc, char **argv)
 	numbers = set_args(argv, count);
 	if (stack_fill(&a, numbers, count))
 	{
-		if (count > 2 && !is_ascending(&a))
-			mechanicalTurk(&a, &b);
+		if (is_ascending(&a))
+			return (0);
+		if (count > 5)
+			sort(&a, &b);
+		else
+			sort_small(&a, &b);
 	}
 	else
 		write(2, "Error\n", 6);
