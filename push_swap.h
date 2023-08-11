@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/07/09 02:40:35 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/07/27 22:39:27 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			free_numbers(char **numbers, int size);
 
 // * Sorting
+void sort_3(t_stack *a, t_stack *b);
 void mechanicalTurk(t_stack *a, t_stack *b);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 23:48:37 by sabdelra          #+#    #+#              #
-#    Updated: 2023/07/08 07:38:44 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/07/27 20:59:02 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ COLOR_END=\033[0m
 NAME:= push_swap
 
 SRCSDR:= src/
-SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c stack_print.c utils.c push.c swap.c rotate.c r_rotate.c ft_strchr.c ft_memmove.c
+SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c stack_print.c utils.c push.c swap.c rotate.c r_rotate.c ft_strchr.c ft_memmove.c sort_small.c
 SRCS:= $(addprefix $(SRCSDR), $(SRCSL))
 
 OBJSDR:= obj/

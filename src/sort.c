@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:46:45 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/06/19 18:55:54 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/07/27 20:29:06by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static void set_up(t_stack *a, t_stack *b)
 	{
 		if (a->top->num > a->bot->num)
 			swap(a);
+		return ;
+	}
+	else if (a->size == 3)
+	{
+		sort_3(a, b);
 		return ;
 	}
 	else
@@ -88,7 +93,7 @@ void mechanicalTurk(t_stack *a, t_stack *b)
 	int	min[3];
 
 	set_up(a, b);
-	while (a->size)
+	while (a->size && !is_ascending(a))
 	{
 		find_min_rotations(a, b, min);
 		while (min[A] && min[B])
