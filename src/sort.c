@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 17:13:16 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/08/11 20:49:30y sabdelra         ###   ########.fr       */
+/*   Created: 2023/08/12 00:18:52 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/08/12 00:25:58 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ static void	rank(t_stack *a, t_num *node, t_num *start)
 	int		i;
 	t_num	*temp;
 
-
 	if (!start)
 		start = node;
 	else if (node == start)
 		return ;
 	i = 0;
 	temp = a->top;
-	while (i < a->size - 1)
+	while (i < a->size)
 	{
 		if (node->num > temp->num)
 			node->rank++;
@@ -34,31 +33,31 @@ static void	rank(t_stack *a, t_num *node, t_num *start)
 	rank(a, node->below, start);
 }
 
-void 	sort(t_stack *a, t_stack *b)
+void	sort(t_stack *a, t_stack *b)
 {
-	int		i;
-	int		j;
+	int		counter[2];
 	int		max_bits;
 	int		num;
+	int		size;
 
-	j = -1;
+	counter[J] = -1;
 	max_bits = 0;
-	rank(a, a->top, NULL); // ranks the nodes
-	while (((a->size - 1) >> max_bits) != 0)
+	rank(a, a->top, NULL);
+	size = a->size;
+	while (((size - 1) >> max_bits))
 		max_bits++;
-	while (++j < max_bits)
+	while (++counter[J] < max_bits)
 	{
-		i = 0;
-		while (i < a->size)
+		counter[I] = -1;
+		while (++counter[I] < size)
 		{
 			num = a->top->rank;
-			if ((num >> j) & 1)
+			if ((num >> counter[J]) & 1)
 				rot(a);
 			else
 				push(a, b);
-			i++;
 		}
-		while(b->size)
+		while (b->size)
 			push(b, a);
 	}
 }

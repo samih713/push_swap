@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:52:16 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/06/19 19:36:17 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/08/12 00:34:58 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**ft_split(char *s, char del)
 	{
 		wrd_len = size_word(&s, del);
 		split[i] = mem_check(malloc(sizeof(char) * wrd_len + 1));
-		strncpy(split[i], s, wrd_len); //! replace strncpy
+		ft_strlcpy(split[i], s, wrd_len);
 		i++;
 		s += wrd_len;
 	}

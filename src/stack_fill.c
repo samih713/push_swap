@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 01:01:05 by eva-001           #+#    #+#             */
-/*   Updated: 2023/08/11 20:00:18 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:49:34 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,33 @@ First argument is the top of the stack, stack starts at bot ---> above
 Duplicate checking is done using a hast_table implementation
 atoi handles multiple invalid argument cases, and exits cleanly
  */
-int	stack_fill(t_stack *stack, char **numbers, int count)
+int	stack_fill(t_stack *s, char **n, int c)
 {
 	t_num	*node;
 	t_hash	table;
 	int		err_atoi;
 
-	htable_init(count, &table);
-	while (stack->size < count)
+	htable_init(c, &table);
+	while (s->size < c)
 	{
 		node = init_node();
-		if (!stack->size)
-			stack->bot = node;
+		if (!s->size)
+			s->bot = node;
 		else
 		{
-			stack->top->above = node;
-			node->below = stack->top;
-			node->above = stack->bot;
-			stack->bot->below = node;
+			s->top->above = node;
+			node->below = s->top;
+			node->above = s->bot;
+			s->bot->below = node;
 		}
-		stack->top = node;
-		node->num = (_ft_atoi(numbers[count - stack->size - 1], stack, &table, &err_atoi));
-		node->str = numbers[count - stack->size - 1];
-		stack->size++;
-		if(check_duplicates(stack, node, &table) || err_atoi)
-			return(quit(&table, stack) && 0);
+		s->top = node;
+		node->num = (_ft_atoi(n[c - s->size - 1], s, &table, &err_atoi));
+		node->str = n[c - s->size - 1];
+		s->size++;
+		if (check_duplicates(s, node, &table) || err_atoi)
+			return (quit(&table, s) && 0);
 	}
-	return (quit(&table, stack));
+	return (quit(&table, s));
 }
 
 /*

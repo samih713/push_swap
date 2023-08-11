@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 00:51:42 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 19:20:07 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/08/12 00:27:48 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ created stack. If the malloc operation fails, prints an error message
 to stderr and returns NULL.
 */
 void	stack_init(t_stack *stack, char *name)
-{	
+{
 	stack->top = NULL;
 	stack->bot = NULL;
 	stack->s_name = name;

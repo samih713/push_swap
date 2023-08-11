@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/08/11 19:56:08 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:36:05 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 #define str(s) #s
 #define putstr(string) (write(1, string, ft_strlen(string)))
+
+#define I 0
+#define J 1
 
 //* stack
 /*
@@ -85,6 +88,7 @@ void			rprint_stack(t_stack *stack);
 char			*ft_strchr(const char *s, int c);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			free_numbers(char **numbers, int size);
+size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
 
 // * Sorting
 void sort_small(t_stack *a, t_stack *b);
