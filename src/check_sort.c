@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 00:58:01 by eva-001           #+#    #+#             */
-/*   Updated: 2023/08/12 00:18:14 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:26:35 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_ascending(t_stack *stack)
 
 	i = 0;
 	cur = stack->bot;
-	while (i < stack->size - 1)
+	while (cur->num != stack->top->num)
 	{
 		if (cur->num < cur->above->num)
 			return (false);
@@ -36,7 +36,7 @@ bool	is_descending(t_stack *stack)
 
 	i = 0;
 	cur = stack->bot;
-	while (i < stack->size - 1)
+	while (cur->num != stack->top->num)
 	{
 		if (cur->num > cur->above->num)
 			return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _ft_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:17:21 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/08/12 00:17:25 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/13 22:13:30 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ only accepts "+1" or similar
 atoi needs stack and table to free on exit
 underscore because its very specific and only intended to be used by fill_table
 */
-int	_ft_atoi(const char *num, t_stack *stack, t_hash *table, int *err_atoi)
+int	_ft_atoi(const char *num, int *err_atoi)
 {
 	int		i;
 	long	sign;

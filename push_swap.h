@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:27:49 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/08/12 00:36:05 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:15:12 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <assert.h>
 # include <stdbool.h>
 
-#define str(s) #s
-#define putstr(string) (write(1, string, ft_strlen(string)))
+# define STR(s) #s
+# define PUTSTR(string) (write(1, string, ft_strlen(string)))
 
-#define I 0
-#define J 1
+# define I 0
+# define J 1
 
 //* stack
 /*
@@ -55,7 +55,7 @@ typedef struct s_stack
 typedef struct s_entry
 {
 	int				value;
-	struct	s_entry	*next;
+	struct s_entry	*next;
 }	t_entry;
 
 typedef struct s_hash_table
@@ -65,44 +65,32 @@ typedef struct s_hash_table
 }	t_hash;
 
 //* actions
-void	swap(t_stack *stack);
-void	swap_s(t_stack *a, t_stack *b);
-void	rot(t_stack *stack);
-void	rot_r(t_stack *a, t_stack *b);
-void	rrot(t_stack *stack);
-void	rrot_r(t_stack *a, t_stack *b);
-void	push(t_stack *from_stack, t_stack *to_stack);
+void			swap(t_stack *stack);
+void			swap_s(t_stack *a, t_stack *b);
+void			rot(t_stack *stack);
+void			rot_r(t_stack *a, t_stack *b);
+void			rrot(t_stack *stack);
+void			rrot_r(t_stack *a, t_stack *b);
+void			push(t_stack *from_stack, t_stack *to_stack);
 
 //* sources
 void			stack_init(t_stack *stack, char *name);
 int				stack_fill(t_stack *stack, char **numbers, int count);
 void			free_stack(t_stack *stack);
 void			free_table(t_hash *table);
-int				_ft_atoi(const char *num, t_stack *stack, t_hash *table, int *err_atoi);
+int				_ft_atoi(const char *num, int *err_atoi);
 size_t			ft_strlen(char *str);
 bool			is_ascending(t_stack *stack);
 bool			is_descending(t_stack *stack);
 void			*mem_check(void *pointer);
-void			print_stack(t_stack *stack);
-void			rprint_stack(t_stack *stack);
 char			*ft_strchr(const char *s, int c);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			free_numbers(char **numbers, int size);
 size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
+int				check_duplicates(t_num *node, t_hash *table);
 
 // * Sorting
-void sort_small(t_stack *a, t_stack *b);
-void sort(t_stack *a, t_stack *b);
+void			sort_small(t_stack *a, t_stack *b);
+void			sort(t_stack *a, t_stack *b);
 
 #endif
-
-// big
-// TODO all exits print to stderr
-// TODO sort 2 numbers
-
-// small
-// TODO handle args = 1 2 "3 4 5" 6
-// TODO all functions should have a hover message
-	// Description , return value, error, special notes (man style)
-	// params should be self explantory from names
-// TODO

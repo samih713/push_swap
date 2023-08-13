@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_rotate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:50:21 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/06/19 18:39:40 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/08/13 23:14:59 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	rrot_r(t_stack *a, t_stack *b)
 {
 	_rrot(a, 1);
 	_rrot(b, 1);
-	putstr(str(rrr));
-	putstr("\n");
+	PUTSTR(STR(rrr));
+	PUTSTR("\n");
 }
 
 //?		Internal function
@@ -55,8 +55,8 @@ static void	_rrot(t_stack *stack, bool rrr)
 	stack->top->below = old_top;
 	if (!rrr)
 	{
-		putstr(str(rr));
-		putstr(stack->s_name);
-		putstr("\n");
+		PUTSTR(STR(rr));
+		PUTSTR(stack->s_name);
+		PUTSTR("\n");
 	}
 }

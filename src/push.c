@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 13:14:29 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 19:17:22 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/08/13 23:14:59 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	push(t_stack *from_stack, t_stack *to_stack)
 	if (!node)
 		return ;
 	push_node_top(to_stack, node);
-	putstr(str(p));
-	putstr(to_stack->s_name);
-	putstr("\n");
+	PUTSTR(STR(p));
+	PUTSTR(to_stack->s_name);
+	PUTSTR("\n");
 }
 
 //?		Helper functions

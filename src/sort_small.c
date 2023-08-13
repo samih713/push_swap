@@ -6,11 +6,11 @@
 /*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:58:36 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/08/13 19:18:43 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:56:46 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	get_max(t_stack *a)
 {
@@ -34,6 +34,8 @@ static int	get_max(t_stack *a)
 void	sort_3(t_stack *a, int *max)
 {
 	*max = get_max(a);
+	if (is_ascending(a))
+		return ;
 	if (is_descending(a) && a->size == 3)
 	{
 		swap(a);
@@ -52,35 +54,55 @@ void	sort_3(t_stack *a, int *max)
 		rrot(a);
 }
 
+static int	find_min(t_stack *a)
+{
+	int		min;
+	int		i;
+	t_num	*temp;
+
+	i = 0;
+	temp = a->top;
+	min = temp->num;
+	while (i < a->size)
+	{
+		temp = temp->below;
+		if (temp->num < min)
+			min = temp->num;
+		i++;
+	}
+	return (min);
+}
+
+static void	push_min(t_stack *a, t_stack *b)
+{
+	int		min;
+	int		r;
+
+	while (a->size > 3)
+	{
+		r = 0;
+		min = find_min(a);
+		if (a->bot->num == min)
+			rrot(a);
+		while (a->top->num != min)
+			rot(a);
+		push(a, b);
+	}
+}
+
 void	sort_small(t_stack *a, t_stack *b)
 {
 	int	max;
 
 	if (is_ascending(a))
 		return ;
-	if (a->size <= 3)
+	if (a->size == 3)
 	{
 		sort_3(a, &max);
 		return ;
 	}
-	while (a->size > 3)
-		push(a, b);
+	push_min(a, b);
 	sort_3(a, &max);
-	while (b->size) {
-		if (b->top->num < a->top->num)
-			push(b, a);
-		else if (b->top->num > max) {
-			max = b->top->num;
-			push(b, a);
-			rot(a);
-		}
-		else
-		{
-			while (b->top->num > a->top->num)
-				rot(a);
-			push(b, a);
-		}
-		while (!is_ascending(a))
-			rot(a);
-	}
+	while (b->size)
+		push(b, a);
 }

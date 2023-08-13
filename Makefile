@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 23:48:37 by sabdelra          #+#    #+#              #
-#    Updated: 2023/08/12 00:33:31 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/08/13 23:07:33 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,13 @@ COLOR_END=\033[0m
 NAME:= push_swap
 
 SRCSDR:= src/
-SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c stack_print.c utils.c push.c swap.c rotate.c r_rotate.c ft_strchr.c ft_memmove.c sort_small.c
+SRCSL:= sort.c free.c error.c _ft_atoi.c check_sort.c stack_fill.c stack_init.c utils.c push.c swap.c rotate.c r_rotate.c ft_strchr.c ft_memmove.c sort_small.c check_duplicates.c
 SRCS:= $(addprefix $(SRCSDR), $(SRCSL))
 
 OBJSDR:= obj/
 OBJSL:= $(SRCSL:.c=.o)
 OBJS:= $(addprefix $(OBJSDR), $(OBJSL))
-#-Wall -Werror -Wextra -std=c99
-CCFLAGS:= -ggdb3
+CCFLAGS:= -Wall -Werror -Wextra
 
 all: $(NAME)
 
@@ -49,6 +48,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf obj/
 	@echo "$(COLOR_BLUE).. full cleaned$(COLOR_END)"
 
 

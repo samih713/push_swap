@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eva-001 <eva-001@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 02:32:11 by eva-001           #+#    #+#             */
-/*   Updated: 2023/06/19 18:40:06 by eva-001          ###   ########.fr       */
+/*   Updated: 2023/08/13 23:14:59 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	swap_s(t_stack *a, t_stack *b)
 		return ;
 	_swap(a, 1);
 	_swap(b, 1);
-	putstr("ss");
-	putstr("\n");
+	PUTSTR("ss");
+	PUTSTR("\n");
 }
 
 //?		Internal function
@@ -63,8 +63,8 @@ static void	_swap(t_stack *stack, bool ss)
 	((t_num *)(stack->top->below))->str = temp.str;
 	if (!ss)
 	{
-		putstr(str(s));
-		putstr(stack->s_name);
-		putstr("\n");
+		PUTSTR(STR(s));
+		PUTSTR(stack->s_name);
+		PUTSTR("\n");
 	}
 }

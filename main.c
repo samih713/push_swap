@@ -1,12 +1,12 @@
-// /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 00:36:37 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/03/12 03:34:47 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/08/13 22:34:11 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/08/13 23:14:25 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static int	count_arguments(char **argv);
 static char	**set_args(char **argv, int count);
+static void	clean_up(char **numbers, int count, t_stack *a, t_stack *b);
 
-int main(int argc, char **argv)
+int	main(int __attribute__((unused))argc, char **argv)
 {
-	t_stack a;
-	t_stack b;
+	t_stack	a;
+	t_stack	b;
 	int		count;
-	char	**numbers;
+	char	**n;
 
-	stack_init(&a, str(a));
-	stack_init(&b, str(b));
+	stack_init(&a, STR(a));
+	stack_init(&b, STR(b));
 	if (!argv[1] || !*(argv[1]))
 		return (0);
 	count = count_arguments(argv);
-	numbers = set_args(argv, count);
-	if (stack_fill(&a, numbers, count))
+	n = set_args(argv, count);
+	if (stack_fill(&a, n, count))
 	{
 		if (is_ascending(&a))
 			return (0);
@@ -39,9 +40,7 @@ int main(int argc, char **argv)
 	}
 	else
 		write(2, "Error\n", 6);
-	free_numbers(numbers, count);
-	free_stack(&a);
-	free_stack(&b);
+	clean_up(n, count, &a, &b);
 	return (0);
 }
 
@@ -72,45 +71,53 @@ static int	count_arguments(char **argv)
 	return (ret);
 }
 
-static char	**set_args(char **argv, int count)
+// Copy non-whitespace content and update the position
+static void	copy_content(char **ret, char *av, int *i, int *j)
+{
+	int	sz;
+
+	sz = 0;
+	while (av[*i + sz] && !ft_strchr(" \t", av[*i + sz]))
+		sz++;
+	ret[*j] = mem_check(malloc(sizeof(char) * sz + 1));
+	ft_memmove(ret[*j], av + *i, sz);
+	ret[*j][sz] = 0;
+	*j += 1;
+	*i += sz;
+}
+
+static char	**set_args(char **av, int count)
 {
 	char	**ret;
-	int		i;
-	int		j;
-	int		size;
-	char	*ws;
+	int		c[2];
+	int		sz;
 
-	ws = " \t\n\r\v";
-	j = 0;
+	c[J] = 0;
 	ret = mem_check(malloc(sizeof(char *) * count));
-	while (*(++argv))
+	while (*(++av))
 	{
-		i = 0;
-		while (ft_strchr(*argv, ' ') && (*argv)[i])
+		c[I] = 0;
+		while (ft_strchr(*av, ' ') && (*av)[c[I]])
 		{
-			while (ft_strchr(ws, (*argv)[i]) && (*argv)[i])
-				i++;
-			if ((*argv)[i] && !ft_strchr(ws, (*argv)[i]))
-			{
-				size = 0;
-				while ((*argv)[i + size] && !ft_strchr(ws, (*argv)[i + size]))
-					size++;
-				ret[j] = mem_check(malloc(sizeof(char) * size + 1));
-				ft_memmove(ret[j], (*argv) + i, size);
-				ret[j][size] = 0;
-				j++;
-				i += size;
-			}
+			while (ft_strchr(" \t", (*av)[c[I]]) && (*av)[c[I]])
+				c[I]++;
+			if ((*av)[c[I]] && !ft_strchr(" \t", (*av)[c[I]]))
+				copy_content(ret, *av, &c[I], &c[J]);
 		}
-		if ((*argv)[i])
+		if ((*av)[c[I]])
 		{
-			size = ft_strlen((*argv));
-			ret[j] = mem_check(malloc(sizeof(char) * size + 1));
-			ft_memmove(ret[j], (*argv), size);
-			ret[j][size] = 0;
-			j++;
+			sz = ft_strlen((*av));
+			ret[c[J]] = mem_check(malloc(sizeof(char) * sz + 1));
+			ft_memmove(ret[c[J]], (*av), sz);
+			ret[c[J]++][sz] = 0;
 		}
 	}
 	return (ret);
 }
 
+static void	clean_up(char **n, int c, t_stack *a, t_stack *b)
+{
+	free_numbers(n, c);
+	free_stack(a);
+	free_stack(b);
+}

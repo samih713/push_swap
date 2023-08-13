@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 02:52:26 by eva-001           #+#    #+#             */
-/*   Updated: 2023/05/06 04:46:51 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:14:59 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	rot_r(t_stack *a, t_stack *b)
 {
 	_rot(a, 1);
 	_rot(b, 1);
-	putstr(str(rr));
-	putstr("\n");
+	PUTSTR(STR(rr));
+	PUTSTR("\n");
 }
 
 //?		Internal function
@@ -57,8 +57,8 @@ static void	_rot(t_stack *stack, bool rr)
 	stack->bot->above = old_bot;
 	if (!rr)
 	{
-		putstr(str(r));
-		putstr(stack->s_name);
-		putstr("\n");
+		PUTSTR(STR(r));
+		PUTSTR(stack->s_name);
+		PUTSTR("\n");
 	}
 }
